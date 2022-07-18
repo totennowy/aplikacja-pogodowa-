@@ -1,0 +1,17 @@
+@mixin flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin boxStats($x) {
+  width: $x;
+  border-radius: 3rem;
+  padding: 1rem 0;
+  margin: 2rem auto;
+  background: $white-transparent;
+  box-shadow: 4px 4px $black;
+}
+
+$semi-white: #fafafa;
+$white-transparent: rgba(255, 255, 255, 0.2);
+$black: rgba(0, 0, 0, 0.4);
