@@ -2,53 +2,79 @@
 @import "./variables";
 
 body {
-  background: url("./assets/rain.gif");
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  .search_box {
-    margin-top: 2rem;
-    text-align: center;
-
-    input {
-      width: 100%;
-      text-align: center;
-      font-size: 5rem;
-      font-weight: 700;
-      padding: 2rem;
-      color: $semi-white;
-      @include boxStats(90%);
-
-      &::placeholder {
-        color: $semi-white;
-      }
-    }
+  .app {
+    @include background("./assets/app.gif");
   }
 
-  .main_box {
-    margin: 15rem 0;
-    text-align: center;
-    color: $semi-white;
+  .rain {
+    @include background("./assets/deszcz.gif");
+  }
 
-    .main_daytime {
-      font-size: 4rem;
-      @include boxStats(50%);
+  .snow {
+    @include background("./assets/snieg.gif");
+  }
+
+  .thunderstorm {
+    @include background("./assets/deszcz.gif");
+  }
+
+  .clear {
+    @include background("./assets/słońce.gif");
+  }
+
+  .clouds {
+    @include background("./assets/pochmurno.gif");
+  }
+
+  main {
+    height: 100vh;
+    width: 100%;
+    margin-top: -2rem;
+
+    .search_box {
+      margin-top: 2rem;
+      text-align: center;
+
+      input {
+        width: 100%;
+        text-align: center;
+        font-size: 5rem;
+        font-weight: 700;
+        padding: 2rem;
+        color: $semi-white;
+        @include boxStats(90%);
+
+        &::placeholder {
+          color: $semi-white;
+        }
+      }
     }
-    .main_city {
-      font-size: 10rem;
-      font-weight: 700;
-      @include boxStats(80%);
-    }
-    .main_temperature {
-      font-size: 25rem;
-      font-weight: 900;
-      @include boxStats(60%);
-    }
-    .main_state {
-      font-size: 7rem;
-      font-weight: 700;
-      text-transform: capitalize;
-      @include boxStats(80%);
+
+    .main_box {
+      margin: 15rem 0;
+      text-align: center;
+      color: $semi-white;
+
+      .main_daytime {
+        font-size: 4rem;
+        @include boxStats(50%);
+      }
+      .main_city {
+        font-size: 10rem;
+        font-weight: 700;
+        @include boxStats(80%);
+      }
+      .main_temperature {
+        font-size: 25rem;
+        font-weight: 900;
+        @include boxStats(60%);
+      }
+      .main_state {
+        font-size: 7rem;
+        font-weight: 700;
+        text-transform: capitalize;
+        @include boxStats(80%);
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const api = {
   key: "5548dc3776887cd60acb44353f9daf3a",
@@ -8,6 +8,7 @@ const api = {
 function App() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState({});
+  const [time, setTime] = useState("");
 
   const days = [
     "Niedziela",
@@ -19,10 +20,12 @@ function App() {
     "Sobota",
   ];
 
-  const date = new Date();
-  const day = days[date.getDay()];
-  const hours = ("0" + date.getHours()).slice(-2);
-  const minutes = ("0" + date.getMinutes()).slice(-2);
+  function getTime() {
+    const date = new Date();
+    const hour = date.toLocaleTimeString();
+    const day = days[date.getDay()];
+    return `${day}, ${hour}`;
+  }
 
   const search = (event) => {
     if (event.key === "Enter") {
@@ -38,8 +41,31 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(getTime);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <main>
+    <main
+      className={
+        typeof weather.main != "undefined"
+          ? weather.weather[0].main === "Clouds"
+            ? "app clouds"
+            : weather.weather[0].main === "Clear"
+            ? "app clear"
+            : weather.weather[0].main === "Thunderstorm"
+            ? "app thunderstorm"
+            : weather.weather[0].main === "Snow"
+            ? "app snow"
+            : weather.weather[0].main === "Rain"
+            ? "app rain"
+            : "app"
+          : "app"
+      }
+    >
       <section className="search_box">
         <input
           type="text"
@@ -50,12 +76,9 @@ function App() {
           onKeyPress={search}
         />
       </section>
-
       {typeof weather.main != "undefined" ? (
         <section className="main_box">
-          <p className="main_daytime">
-            {day}, {hours}:{minutes}
-          </p>
+          <p className="main_daytime">{time}</p>
           <p className="main_city">
             {weather.name}, {weather.sys.country}
           </p>
